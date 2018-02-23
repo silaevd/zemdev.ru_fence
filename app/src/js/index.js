@@ -16,7 +16,7 @@ $(document).ready(function () {
 
         const img = this.querySelector('.goodsItem__img').getAttribute('src');
         const title = this.querySelector('.goodsItem__title').textContent;
-        const price = this.querySelector('.goodsItem__price').querySelector('.highlight').textContent;
+        let price = this.querySelector('.goodsItem__price').querySelector('.highlight').textContent;
         const desc = this.querySelector('.goodsItem__desc').textContent;
         const popUp = document.querySelector('.goodsPopUp');
 
@@ -24,7 +24,13 @@ $(document).ready(function () {
         popUp.querySelector('.goodsPopUp__title').textContent = title;
         popUp.querySelector('input[name="project_name"]').setAttribute('value', title)
         popUp.querySelector('.goodsPopUp__desc').textContent = desc;
-        popUp.querySelector('.goodsPopUp__price').querySelector('.highlight').textContent = price;
+
+        if ( price === "по запросу") {
+            popUp.querySelector('.goodsPopUp__price').textContent = "Цена: по запросу";
+        } else {
+            popUp.querySelector('.goodsPopUp__price').innerHTML = 'от <span class="highlight"></span> руб./мп';
+            popUp.querySelector('.goodsPopUp__price').querySelector('.highlight').textContent = price;
+        }
 
     });
 
